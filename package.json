@@ -1,6 +1,6 @@
 {
-  "name": "logseq-plugin-template-react",
-  "version": "0.0.0",
+  "name": "logseq-ddd",
+  "version": "0.1.0",
   "main": "dist/index.html",
   "scripts": {
     "dev": "vite",
@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "@logseq/libs": "^0.0.17",
+    "@xyflow/react": "^12.11.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -37,7 +38,7 @@
     "vite-plugin-logseq": "1.1.2"
   },
   "logseq": {
-    "id": "_pengx17-logseq-template-react",
+    "id": "frma-logseq-ddd",
     "icon": "./logo.svg"
   }
 }

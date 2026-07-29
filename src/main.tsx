@@ -4,6 +4,7 @@ import React from "react";
 import * as ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
+// import "@xyflow/react/dist/style.css";
 
 import { logseq as PL } from "../package.json";
 
@@ -54,7 +55,7 @@ function main() {
     template: `
     <a data-on-click="show">
         <div class="${openIconName}">⚙️</div>
-    </a>    
+    </a>
 `,
   });
 }

@@ -6,23 +6,17 @@ function App() {
   const innerRef = useRef<HTMLDivElement>(null);
   const visible = useAppVisible();
   const code = `
-    mindmap
-      root((mindmap))
-        Origins
-          Long history
-          ::icon(fa fa-book)
-          Popularisation
-            British popular psychology author Tony Buzan
-        Research
-          On effectiveness<br/>and features
-          On Automatic creation
-            Uses
-                Creative techniques
-                Strategic planning
-                Argument mapping
-        Tools
-          Pen and paper
-          Mermaid
+    architecture-beta
+        group api(cloud)[API]
+
+        service db(database)[Database] in api
+        service disk1(disk)[Storage] in api
+        service disk2(disk)[Storage] in api
+        service server(server)[Server] in api
+
+        db:L -- R:server
+        disk1:T -- B:server
+        disk2:T -- B:db
   `;
   if (visible) {
     return (

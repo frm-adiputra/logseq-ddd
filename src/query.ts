@@ -12,6 +12,31 @@ const advancedQuery = async <T>(query: string, ...input: Array<any>): Promise<T 
   }
 }
 
+export const getTaggedBlocks = async (tag: string): Promise<BlockEntity[] | null> => {
+  const result = await advancedQuery<BlockEntity[]>(`
+    [:find (pull ?b [*])
+     :in $ ?input
+     :where
+       [?p :block/name ?input]
+       [?b :block/tags ?p]
+    ]
+     `  , `"${tag}"`)
+  return result;
+}
+
+// Get the UUID matching the page name
+export const getPage = async (pageName: string): Promise<PageEntity | null> => {
+  const result = await advancedQuery<PageEntity[]>(`
+    [:find (pull ?p [*])
+     :in $ ?input
+     :where
+     [?p :block/name ?name]
+     [(= ?name ?input)]
+     [?p :block/uuid ?uuid]]
+     `  , `"${pageName}"`)
+  return result?.[0] ?? null
+}
+
 // Get the UUID matching the page name
 export const getPageUuid = async (pageName: string): Promise<PageEntity["uuid"] | null> => {
   const result = await advancedQuery<{ uuid: PageEntity["uuid"] }[]>(`
@@ -21,6 +46,7 @@ export const getPageUuid = async (pageName: string): Promise<PageEntity["uuid"] 
      [?p :block/name ?name]
      [(= ?name ?input)]
      [?p :block/uuid ?uuid]]
+     :remove-block-children? true
      `  , `"${pageName}"`)
   return result?.[0]?.uuid ?? null
 }
